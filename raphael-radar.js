@@ -56,7 +56,7 @@
       },
       legend: {
         "key": true,
-        "key_position": "n",
+        "key_position": "e",
         "key_line_length": 30
       },
       show_ruler_text: false,
@@ -307,10 +307,6 @@
       vector["points"] = v_points;
 
       var score_title = title;
-      if (label.length > self.global_draw_options["text"]["max-chars"]) {
-        
-        score_title = score_title.replace(" ", "\n");
-      }
       var half_title_mid = ((score_title.length *0.5) * 5) 
       // title with line sample
       if (title && self.global_draw_options["legend"]["key"]) {
@@ -320,7 +316,7 @@
             y1 = 10;
             x2 = ((self.cx + ((length * 40 + key_length)/2)) - (((length * 40 + key_length)/2)) * i);
             y2 = y1;
-            x3 = x1 -  ((title.length *0.5) * 5) ;
+            x3 = x1; // -  ((title.length *0.5) * 5) ;
             y3 = y1 + 10;
           break;
           case "nw":
@@ -341,11 +337,12 @@
           break;
           case "e":
             x1 = 10 - key_length;
-            y1 = (self.cy - (20 * i) ) + 20 * i;
+            y1 = (self.cy - ((length * 25)/2)) + ( 25 * i);
+            console.log( "cy:" + self.cy + " " + ((length * 25)*0.5) + " " + ((self.cy - ((length * 25)/2)) + ( 25 * i)) );
             x2 = 10;
             y2 = y1;
-            x3 = x2 + 10;
-            y3 = y1;
+            x3 = x1 - 5;
+            y3 = y1 + 10;
           break;
           case "w":
             x1 = (self.cx * 2 - 60) - key_length;
@@ -372,17 +369,17 @@
             y3 = y1;
           break;
           case "s":
-            x1 = self.cx - 50;
-            y1 = self.bottom - 10 + 20 * i;
-            x2 = self.cx;
+            x1 = ((self.cx + ((length * 40 + key_length)/2)) - (((length * 40 + key_length)/2)) * i) - key_length;
+            y1 = self.bottom + 40;
+            x2 = ((self.cx + ((length * 40 + key_length)/2)) - (((length * 40 + key_length)/2)) * i);
             y2 = y1;
-            x3 = x2 + 10;
-            y3 = y1;
+            x3 = x1; // -  ((title.length *0.5) * 5) ;
+            y3 = y1 + 10;
           break;
         }
         line = self.raphael.path("M " + x1 + " " + y1 + " L " + x2 + " " + y2).attr(draw_options["lines"]);
         point = self.raphael.circle(x1, y1, draw_options["points"]["size"]).attr(draw_options["points"]);
-        text = self.raphael.text(x3, y3, title).attr(draw_options["text"]);
+        text = self.raphael.text(x3, y3, score_title).attr(draw_options["text"]);
         vector["title"] = { line: line, point: point, text: text };
       }
       self.chart["scores"].push(vector);
