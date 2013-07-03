@@ -1,0 +1,89 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+  <head>
+    <meta charset="utf-8"> 
+    <title>Raphaël Radar Chart Plugin Sample</title> 
+    <link rel="stylesheet" href="example.css"> 
+    <script src="raphael-2.1.0.min.js"></script>
+    <script src="jquery-1.7.2.min.js"></script>
+    <script src="popup.js"></script>
+    <script src="../raphael-radar.js"></script>
+  </head>
+  <body>
+    <!-- <h1>Examples</h1>
+     
+    <h2>5. Event</h2> -->
+      <div class="graph" id="graph_with_event">
+
+      </div>
+  </body>
+
+  <script>
+    $(document).ready(function(){
+
+      var labels =  ["A. Management Committment","B. Communication","C. Safety as A Priority","D. Safety Rules and Procedures","E. Supportive Environment","F. Involvement","G. Personal Priorities","H. Personal Appreciation of Risk","I. Work Environment"];
+      var labels2 =  ["A","B","C","D","E","F","G","H","I"];
+
+      var datasets = [
+          { title: "Dataset 1 Maximum and Minimum", 
+            scores:     [ 5.50, 7.00, 6.50, 8.40, 7.25, 7.00, 7.60, 7.33, 8.50 ],
+            min_scores: [ 3.50, 6.00, 3.50, 5.40, 3.25, 4.00, 2.60, 5.33, 6.50 ],
+            draw_options: {
+              lines: {'stroke-width':'2','stroke':'#006699','stroke-opacity':0.7,'fill':'#006699','fill-opacity':0.35},
+              points: {'fill':'#006699','stroke-width':'1','stroke':'#006699','stroke-opacity':0.5,'size': 4}
+            }
+          },
+          { title: "Data 2", 
+            scores:     [ 4.50, 8.30, 5.00, 5.40, 6.25, 6.00, 6.60, 6.33, 7.20 ],
+            min_scores: [ 3.00, 4.00, 4.50, 2.40, 2.25, 3.23, 3.60, 4.33, 5.57 ],
+            draw_options: {
+              lines: {'stroke-width':'2','stroke':'#660099','stroke-opacity':0.7,'fill':'#660099','fill-opacity':0.35},
+              points: {'fill':'#660099','stroke-width':'1','stroke':'#660099','stroke-opacity':0.5,'size': 4}
+            }
+          },
+          { title: "Benchmark", 
+            scores: [ 7.50, 7.50, 7.50, 7.50, 7.50, 7.50, 7.50, 7.50, 7.50 ],
+            draw_options: {
+              lines: {'stroke-width':'2', 'stroke':'#FF0000','stroke-dasharray':'- ','fill': '#FF0000','fill-opacity': 0},
+              points: {'fill':'#FF0000','stroke-width':'0'}
+            }
+          }
+      ];
+
+      var radarWidth = 500;
+      var radarHeight = 550;
+
+
+      var paper5 = Raphael( "graph_with_event", '100%', '100%').setViewBox(0, 0, radarWidth, radarHeight, true);
+      var graph_with_event = paper5.radarchart( radarWidth, radarHeight, labels, 00, 10, datasets, labels2);
+
+      graph_with_event.scores.forEach(function(s) {
+        s.points.forEach(function (p) {
+          //console.log(p.score);
+
+          var side = "top";
+          var offset = p.attrs.r;
+          var popupLabel = paper5.text(p.attrs.cx, p.attrs.cy, p.title + '\n' + p.score.label + ': ' + p.score.rawValue).attr({fill: "#fff"}).hide();
+          // if (p.attrs.cx + popupLabel.getBBox().width > paper5.width) {
+          //   side = "left";
+          //   offset = -offset;
+          // }
+          var popup = paper5.popup(p.attrs.cx, p.attrs.cy - (offset + 5), popupLabel, side).attr({fill: "#333", 'fill-opacity': 0.75, color: '#fff', stroke: "#333", "stroke-width": 2 }).hide();
+
+          p.mouseover(function () {
+            popup.toFront().show();
+            popupLabel.toFront().show();
+          });
+
+          p.mouseout(function () {
+            popup.hide();
+            popupLabel.hide();
+          });
+
+          p.toFront();
+        });
+      });
+
+});
+  </script>
+</html>

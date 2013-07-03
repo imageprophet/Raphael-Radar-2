@@ -1,0 +1,19 @@
+body {
+	background: #999;
+	height: 100%;
+}
+.graph {
+  /*background: url(images/radar-bg.png);*/
+  /*width: 100%;*/
+  height: 600px;
+  /*height: 90%;*/
+  overflow: visible;
+}
+
+.graph > svg {
+  background: #fff;
+}
+
+svg > text:last-of-type {
+	color: #fff;
+}
