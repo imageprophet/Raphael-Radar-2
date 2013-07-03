@@ -7,7 +7,7 @@ twb/raphael-radar is an extended version of
 ono/raphael-radar is a refactored version of
 [Raphael-Radar](https://github.com/tnzk/Raphael-Radar)
 
-![Screen Shot](https://github.com/twb/raphael-radar/raw/master/example/images/screenshot2.png)
+![Screen Shot](https://github.com/imageprophet/Rapheal-Radar-2/raw/master/example/images/screenshot2.png)
 
 The objectives are...
 
@@ -28,7 +28,7 @@ Style options are maintained through the draw_options object. See `default_draw_
 
 The following chart can be created using the code below it, and you no longer need to edit the lines and points manually.
 
-![Screen Shot](https://github.com/twb/raphael-radar/raw/master/example/images/screenshot2.png)
+![Screen Shot](https://github.com/imageprophet/Rapheal-Radar-2/raw/master/example/images/screenshot2.png)
 
     
 **Note: While the example below works great, I (jsoma) would recommend using the code above or looking at the most recently updated on under /examples in this project**
