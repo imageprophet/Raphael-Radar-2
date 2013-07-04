@@ -6,9 +6,9 @@ twb/raphael-radar is an extended version of
 
 ono/raphael-radar is a refactored version of
 [Raphael-Radar](https://github.com/tnzk/Raphael-Radar)
-
+<!-- 
 ![Screen Shot](https://raw.github.com/imageprophet/Raphael-Radar-2/master/example/images/screenshot2.png)
-
+ -->
 The objectives are...
 
 * Add a range score group.
@@ -27,10 +27,10 @@ Raphael-Radar now has the option to maintain all content & style options through
 Style options are maintained through the draw_options object. See `default_draw_options` in raphael-radar.js for defaults. All attributes are passed directly to Raphaël via `attr()` so you can set pretty much whatever attributes you'd like on lines, points and text.
 
 The following chart can be created using the code below it, and you no longer need to edit the lines and points manually.
-
+<!-- 
 ![Screen Shot](https://raw.github.com/imageprophet/Raphael-Radar-2/master/example/images/screenshot2.png)
-
-    
+ -->
+     
 **Note: While the example below works great, I (jsoma) would recommend using the code above or looking at the most recently updated on under /examples in this project**
 
 <!-- Seeing example is always the best way to understand how it works. Here is an
@@ -51,7 +51,7 @@ TODO
 Special Thanks to
 -----------------
 
-* ![Jonathan Soma](https://github.com/jsoma)
+* [Jonathan Soma](https://github.com/jsoma)
 * KURAZEKO Kyohe for original version.
 * Yoshihide Tsuda for designing a rich version of sample chart.
 
