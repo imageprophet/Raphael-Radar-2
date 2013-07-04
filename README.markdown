@@ -1,11 +1,8 @@
 Raphaël.js - Radar
 =================
 
-twb/raphael-radar is an extended version of
-[Raphael-Radar](https://github.com/ono/Raphael-Radar)
-
-ono/raphael-radar is a refactored version of
-[Raphael-Radar](https://github.com/tnzk/Raphael-Radar)
+twb/raphael-radar is an extended version of [Raphael-Radar](https://github.com/ono/Raphael-Radar)
+ono/raphael-radar is a refactored version of [Raphael-Radar](https://github.com/tnzk/Raphael-Radar)
 <!-- 
 ![Screen Shot](https://raw.github.com/imageprophet/Raphael-Radar-2/master/example/images/screenshot2.png)
  -->
@@ -30,7 +27,7 @@ The following chart can be created using the code below it, and you no longer ne
 <!-- 
 ![Screen Shot](https://raw.github.com/imageprophet/Raphael-Radar-2/master/example/images/screenshot2.png)
  -->
-     
+
 **Note: While the example below works great, I (jsoma) would recommend using the code above or looking at the most recently updated on under /examples in this project**
 
 <!-- Seeing example is always the best way to understand how it works. Here is an
