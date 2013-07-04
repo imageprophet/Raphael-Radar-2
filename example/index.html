@@ -13,7 +13,7 @@
     <!-- <h1>Examples</h1>
      
     <h2>5. Event</h2> -->
-      <div class="graph" id="graph_with_event">
+      <div class="graph" id="radar_graph">
 
       </div>
   </body>
@@ -54,7 +54,7 @@
       var radarHeight = 550;
 
 
-      var paper5 = Raphael( "graph_with_event", '100%', '100%').setViewBox(0, 0, radarWidth, radarHeight, true);
+      var paper5 = Raphael( "radar_graph", '100%', '100%').setViewBox(0, 0, radarWidth, radarHeight, true);
       var graph_with_event = paper5.radarchart( radarWidth, radarHeight, labels, 00, 10, datasets, labels2);
 
       graph_with_event.scores.forEach(function(s) {

@@ -56,8 +56,8 @@
       },
       legend: {
         "key": true,
-        "key_position": "e",
-        "key_line_length": 30
+        "key_position": "n",
+        "key_line_length": 50
       },
       show_ruler_text: false,
       ruler_type: "line" // could be "line" or "dash" defaults to line
@@ -316,10 +316,10 @@
             y1 = 10;
             x2 = ((self.cx + ((length * 40 + key_length)/2)) - (((length * 40 + key_length)/2)) * i);
             y2 = y1;
-            x3 = x1; // -  ((title.length *0.5) * 5) ;
+            x3 = x1;
             y3 = y1 + 10;
           break;
-          case "nw":
+          case "ne":
             x1 = (self.cx * 2 - 60) - key_length;
             y1 = 10 + 20 * i;
             x2 = self.cx * 2 - 60;
@@ -327,7 +327,7 @@
             x3 = x2 + 10;
             y3 = y1;
           break;
-          case "ne":
+          case "nw":
             x1 = 10;
             y1 = 10 + 20 * i;
             x2 = 10 + key_length;
@@ -335,35 +335,35 @@
             x3 = x2 + 10;
             y3 = y1;
           break;
-          case "e":
-            x1 = 10 - key_length;
+          case "w":
+            x1 = 20 - key_length;
             y1 = (self.cy - ((length * 25)/2)) + ( 25 * i);
-            console.log( "cy:" + self.cy + " " + ((length * 25)*0.5) + " " + ((self.cy - ((length * 25)/2)) + ( 25 * i)) );
-            x2 = 10;
+            // console.log( "cy:" + self.cy + " " + ((length * 25)*0.5) + " " + ((self.cy - ((length * 25)/2)) + ( 25 * i)) );
+            x2 = 20;
             y2 = y1;
-            x3 = x1 - 5;
+            x3 = x1 - half_title_mid;
             y3 = y1 + 10;
           break;
-          case "w":
+          case "e":
+            x1 = (self.cx * 2 - 20) - key_length;
+            y1 = (self.cy - ((length * 25)/2)) + ( 25 * i);
+            x2 = (self.cx * 2 - 20);
+            y2 = y1;
+            x3 = x1 - half_title_mid;
+            y3 = y1 + 10;
+          break;
+          case "se":
             x1 = (self.cx * 2 - 60) - key_length;
-            y1 = (self.cy - (20 * i) ) + 20 * i;
+            y1 = self.bottom - 10 + 20 * i;
             x2 = (self.cx * 2 - 60);
             y2 = y1;
             x3 = x2 + 10;
             y3 = y1;
           break;
           case "sw":
-            x1 = self.cx - key_length;
+            x1 = 10 - key_length;
             y1 = self.bottom - 10 + 20 * i;
-            x2 = self.cx;
-            y2 = y1;
-            x3 = x2 + 10;
-            y3 = y1;
-          break;
-          case "se":
-            x1 = self.cx - key_length;
-            y1 = self.bottom - 10 + 20 * i;
-            x2 = self.cx;
+            x2 = 10;
             y2 = y1;
             x3 = x2 + 10;
             y3 = y1;
@@ -373,7 +373,7 @@
             y1 = self.bottom + 40;
             x2 = ((self.cx + ((length * 40 + key_length)/2)) - (((length * 40 + key_length)/2)) * i);
             y2 = y1;
-            x3 = x1; // -  ((title.length *0.5) * 5) ;
+            x3 = x1;
             y3 = y1 + 10;
           break;
         }
