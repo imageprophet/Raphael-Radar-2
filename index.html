@@ -1,89 +1,78 @@
-<!DOCTYPE html>
-<html>
- <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width = device-width">
-    <title>Retna Test</title>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
-    <script language="javascript" text="text/javascript" src="javascripts/flotlib.js"></script>
-    <script language="javascript" text="text/javascript" src="javascripts/flot.spider.mod.js"></script>
-</head>
-<body>
-	<h1>Flot Test</h1>
+<!DOCTYPE html> <html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Raphael-radar-2 by imageprophet</title>
+  </head>
 
-<div id="placeholder" style="width: 320px; height: 320px;"></div>
-<div id="report"></div>
+  <body>
+    <div id="container">
+      <div class="inner">
 
+        <header>
+          <h1>Raphael-radar-2</h1>
+          <h2>An update to Raphael Radar chart.</h2>
+        </header>
 
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/imageprophet/Raphael-Radar-2/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/imageprophet/Raphael-Radar-2/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/imageprophet/Raphael-Radar-2" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
 
-<script id="source" language="javascript" type="text/javascript">
+        <hr>
 
-jQuery(document).ready(function(){
+        <section id="main_content">
+          <h1>
+<a name="raphaljs---radar" class="anchor" href="#raphaljs---radar"><span class="octicon octicon-link"></span></a>Raphaël.js - Radar</h1>
 
+<h1></h1>
 
-		function getData(count, type, max, min) {
+<p>This is an extended version of <a href="https://github.com/ono/Raphael-Radar">ono/raphael-radar</a>  which is a refactored version of <a href="https://github.com/tnzk/Raphael-Radar">Raphael-Radar</a></p>
 
-	        var theData = [];
-	        var series = ( count != null ) ? ((count != 0) ? count: Math.floor(Math.random()*10)+3) : Math.floor(Math.random()*10)+3;
-	        var theMax = ( max != null ) ? max : Math.floor(Math.random()*100)+1;
-	        var theMin = ( min != null ) ? min : 1;
-	        for( var i = 0; i<series; i++)
-	        {
-        		switch (type) {
-        			case "pie":
-	                	theData[i] = { label: "Group "+(i+1), data: Math.floor(Math.random()* theMax )+1 };
-					    break;
-        			case "down":
-	                	theData[i] = [ (i+1), Math.floor(Math.random()* (theMax - theMin) )+ (theMax/2) ];
-	                	theMax = theMax - (theMax / series);
-					    break;
-        			case "bandwidth":
-        				theData[i] = [ (i+1), (Math.floor(Math.random()* (theMax - theMin) )+ theMin) + ((Math.floor(Math.random()* (theMax - theMin) )+ theMin)/2), Math.floor(Math.random()* (theMax - theMin) ) + theMin  ];
-					    break;
-					default:
-						theData[i] = [ (i+1), Math.floor(Math.random()* (theMax - theMin) )+ theMin ];
-            	}
-	        }
-	        return theData;
-    	}
+<!-- <p><img src="https://raw.github.com/imageprophet/Raphael-Radar-2/master/example/images/screenshot2.png" alt="Screen Shot"></p>
+ -->
+<p>The objectives are...</p>
 
-		spiderGraph = {
-					series:
-			        {
-			        	stacked: true,
-			        	spider:
-			            {
-			            	active: true,
-			            	lineWidth: 2,
-               				lineStyle: "rgba(100,100,100)",
-			            	legs: {
-		            			data: [{label: "1"}, {label: "2"}, {label: "3"}, {label: "4"}, {label: "5"}, {label: "6"}, {label: "7"}, {label: "8"}, {label: "9"} ],
-			               		legScaleMax: 1,
-			               		legScaleMin:0
-			               	},
-			               	legMin: 0,
-			               	legMax: 100,
-      			   			scaleMode: "static",
-			                spiderSize: 0.8
-			            }
-			        }
-			        ,grid:
-			        {	tickColor: "rgba(0,0,0,0.2)",
-			            mode: "spider",
-			            ticks: 10
-			        },
-					legend: {
-					    show: false,
-					    position: 'nw'
-					}
-			    };
+<ul>
+<li>Add a range score group.</li>
+<li>Enhance customization for charging changes.</li>
+<li>Add relevant ids to SVG elements for CSS styling.</li>
+<li>Update example.</li>
+<li>Make chart responsive to container element.</li>
+</ul><p>Please note that there is no compatibility with the previous versions.</p>
+
+<p>More detail amd examples coming soon.</p>
 
 
-		/***** Safety Culture Index Company *****/
-		var plot6 = jQuery.plot(jQuery("#placeholder"), [ { data: getData(9,"", 80, 20), label: "Safety Culture Index", color: "#006699",  spider: {show: true, lineWidth: 1} }], spiderGraph );
 
-});
+<h2>
+        </section>
 
-</script>
-</body>
+        <footer>
+          Raphael-radar-2 is maintained by <a href="https://github.com/imageprophet">imageprophet</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+                  <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-32700073-2");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+      </div>
+    </div>
+  </body>
 </html>
