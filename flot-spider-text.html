@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width = device-width">
+    <title>Retna Test</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+    <script language="javascript" text="text/javascript" src="javascripts/flotlib.js"></script>
+    <script language="javascript" text="text/javascript" src="javascripts/flot.spider.mod.js"></script>
+</head>
+<body>
+	<h1>Flot Test</h1>
+
+<div id="placeholder" style="width: 320px; height: 320px;"></div>
+<div id="report"></div>
+
+
+
+<script id="source" language="javascript" type="text/javascript">
+
+jQuery(document).ready(function(){
+
+
+		function getData(count, type, max, min) {
+
+	        var theData = [];
+	        var series = ( count != null ) ? ((count != 0) ? count: Math.floor(Math.random()*10)+3) : Math.floor(Math.random()*10)+3;
+	        var theMax = ( max != null ) ? max : Math.floor(Math.random()*100)+1;
+	        var theMin = ( min != null ) ? min : 1;
+	        for( var i = 0; i<series; i++)
+	        {
+        		switch (type) {
+        			case "pie":
+	                	theData[i] = { label: "Group "+(i+1), data: Math.floor(Math.random()* theMax )+1 };
+					    break;
+        			case "down":
+	                	theData[i] = [ (i+1), Math.floor(Math.random()* (theMax - theMin) )+ (theMax/2) ];
+	                	theMax = theMax - (theMax / series);
+					    break;
+        			case "bandwidth":
+        				theData[i] = [ (i+1), (Math.floor(Math.random()* (theMax - theMin) )+ theMin) + ((Math.floor(Math.random()* (theMax - theMin) )+ theMin)/2), Math.floor(Math.random()* (theMax - theMin) ) + theMin  ];
+					    break;
+					default:
+						theData[i] = [ (i+1), Math.floor(Math.random()* (theMax - theMin) )+ theMin ];
+            	}
+	        }
+	        return theData;
+    	}
+
+		spiderGraph = {
+					series:
+			        {
+			        	stacked: true,
+			        	spider:
+			            {
+			            	active: true,
+			            	lineWidth: 2,
+               				lineStyle: "rgba(100,100,100)",
+			            	legs: {
+		            			data: [{label: "1"}, {label: "2"}, {label: "3"}, {label: "4"}, {label: "5"}, {label: "6"}, {label: "7"}, {label: "8"}, {label: "9"} ],
+			               		legScaleMax: 1,
+			               		legScaleMin:0
+			               	},
+			               	legMin: 0,
+			               	legMax: 100,
+      			   			scaleMode: "static",
+			                spiderSize: 0.8
+			            }
+			        }
+			        ,grid:
+			        {	tickColor: "rgba(0,0,0,0.2)",
+			            mode: "spider",
+			            ticks: 10
+			        },
+					legend: {
+					    show: false,
+					    position: 'nw'
+					}
+			    };
+
+
+		/***** Safety Culture Index Company *****/
+		var plot6 = jQuery.plot(jQuery("#placeholder"), [ { data: getData(9,"", 80, 20), label: "Safety Culture Index", color: "#006699",  spider: {show: true, lineWidth: 1} }], spiderGraph );
+
+});
+
+</script>
+</body>
+</html>
