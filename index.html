@@ -2,48 +2,86 @@
 <html>
  <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Spider Test</title>
-    <link href="http://jumflot.jumware.com/Experimental/layout.css" rel="stylesheet" type="text/css">
-    <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="http://www.flotcharts.org/excanvas.min.js""></script><![endif]-->
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/smoothness/jquery-ui.css" />
-    <script language="javascript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script language="javascript" text="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
-    <script language="javascript" text="text/javascript" src="http://www.flotcharts.org/flot/jquery.flot.js"></script>
-    <script language="javascript" text="text/javascript" src="javascripts/jumlib.js"></script>
-    <script language="javascript" text="text/javascript" src="javascripts/flot.spider.mod.js"></script>
+    <title>Retna Test</title>
+    <script language="javascript" text="text/javascript" src="jquery-1.7.min.js"></script>
+    <script language="javascript" text="text/javascript" src="jquery.flot.min.js"></script>
+    <script language="javascript" text="text/javascript" src="jquery.flot.spider.3.js"></script>
 </head>
 <body>
-  <h1>Flot Examples</h1>
-  	<div id="standard">
-			<div id="placeholder" style="width:800px;height:600px;float: left;border: 1px dashed gainsboro;"></div>
-     	</div>
+	<h1>Flot Test</h1>
+
+<div id="placeholder" style="width: 320px; height: 320px;"></div>
+<div id="report"></div>
+
 
 
 <script id="source" language="javascript" type="text/javascript">
-var p1,pdf,p2,p3,data,datadf,data2,data3,options,options2,optionsdf,optionsedit;
- 	options = {
-		series:{
-			spider:{
-				active: true
-				,highlight: {mode: "area"}
-				,legs: { 
-					data: [{label: "OEE"},{label: "MOE"},{label: "OER"},{label: "OEC"},{label: "Quality"}]
-					,legScaleMax: 1
-					,legScaleMin:0.8
-				}
-				,spiderSize: 0.9
-				,debug:{ active:debugOn}       
-			}
-		}
-		,grid:{ hoverable: true,clickable: true,tickColor: "rgba(0,0,0,0.2)",mode: "radar"}
-	};
-	data = [
-		{ label: "Pies", color:"green",data: d1, spider: {show: true, lineWidth: 12} }
-		,{ label: "Apples",data: d2, spider: {show: true} }
-		,{ label: "Cherries",data: d3, spider: {show: true} }
-	];
 
-	p1 = $.plot($("#placeholder"), data , options);
+jQuery(document).ready(function(){
+
+
+		function getData(count, type, max, min) {
+
+	        var theData = [];
+	        var series = ( count != null ) ? ((count != 0) ? count: Math.floor(Math.random()*10)+3) : Math.floor(Math.random()*10)+3;
+	        var theMax = ( max != null ) ? max : Math.floor(Math.random()*100)+1;
+	        var theMin = ( min != null ) ? min : 1;
+	        for( var i = 0; i<series; i++)
+	        {
+        		switch (type) {
+        			case "pie":
+	                	theData[i] = { label: "Group "+(i+1), data: Math.floor(Math.random()* theMax )+1 };
+					    break;
+        			case "down":
+	                	theData[i] = [ (i+1), Math.floor(Math.random()* (theMax - theMin) )+ (theMax/2) ];
+	                	theMax = theMax - (theMax / series);
+					    break;
+        			case "bandwidth":
+        				theData[i] = [ (i+1), (Math.floor(Math.random()* (theMax - theMin) )+ theMin) + ((Math.floor(Math.random()* (theMax - theMin) )+ theMin)/2), Math.floor(Math.random()* (theMax - theMin) ) + theMin  ];
+					    break;
+					default:
+						theData[i] = [ (i+1), Math.floor(Math.random()* (theMax - theMin) )+ theMin ];
+            	}
+	        }
+	        return theData;
+    	}
+
+		spiderGraph = {
+					series:
+			        {
+			        	stacked: true,
+			        	spider:
+			            {
+			            	active: true,
+			            	lineWidth: 2,
+               				lineStyle: "rgba(100,100,100)",
+			            	legs: {
+		            			data: [{label: "1"}, {label: "2"}, {label: "3"}, {label: "4"}, {label: "5"}, {label: "6"}, {label: "7"}, {label: "8"}, {label: "9"} ],
+			               		legScaleMax: 1,
+			               		legScaleMin:0
+			               	},
+			               	legMin: 0,
+			               	legMax: 100,
+      			   			scaleMode: "static",
+			                spiderSize: 0.8
+			            }
+			        }
+			        ,grid:
+			        {	tickColor: "rgba(0,0,0,0.2)",
+			            mode: "spider",
+			            ticks: 10
+			        },
+					legend: {
+					    show: false,
+					    position: 'nw'
+					}
+			    };
+
+
+		/***** Safety Culture Index Company *****/
+		var plot6 = jQuery.plot(jQuery("#placeholder"), [ { data: getData(8,"", 80, 20), label: "Safety Culture Index", color: "#006699",  spider: {show: true, lineWidth: 1} }], spiderGraph );
+
+});
 
 </script>
 </body>
