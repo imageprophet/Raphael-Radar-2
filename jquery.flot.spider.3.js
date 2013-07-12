@@ -36,7 +36,7 @@ data: [
         series: {
             spider: {
                 active: false
-  	    	, show: false
+		    	, show: false
 		    	, spiderSize: 0.8
 		    	, lineWidth: 2
 				, lineStyle: "rgba(0,0,0,0.5)"
@@ -134,12 +134,25 @@ data: [
         function clear(ctx) {
             console.log("dpRatio: " + window.devicePixelRatio + " cW: " + canvas.width + " cH: " + canvas.height);
             $("#report").html("devicePixelRatio: " + window.devicePixelRatio + "<br>Canvas W: " + canvas.width + "<br>Canvas H: " + canvas.height + " ");
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if(window.devicePixelRatio > 1) {
+                window.devicePixelRatio
+                ctx.clearRect(0, 0, (canvas.width / window.devicePixelRatio), (canvas.height/ window.devicePixelRatio) );
+            } else {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
         }
         function setupspider() {
-            maxRadius = Math.min(canvas.width, canvas.height) / 2 * data[0].spider.spiderSize;
-            centerTop = (canvas.height / 2);
-            centerLeft = centerTop;
+            if(window.devicePixelRatio > 1) {
+                var newWidth = (canvas.width / window.devicePixelRatio);
+                var newHeight = (canvas.height/ window.devicePixelRatio);
+                maxRadius = Math.min(newWidth, newHeight) / 2 * data[0].spider.spiderSize;
+                centerTop = (newHeight / 2);
+                centerLeft = centerTop;
+            }else {
+                maxRadius = Math.min(canvas.width, canvas.height) / 2 * data[0].spider.spiderSize;
+                centerTop = (canvas.height / 2);
+                centerLeft = centerTop;
+            }
         }
         function drawspiderPoints(ctx, cnt, serie, opt) {
             for (var j = 0; j < serie.data.length; j++) { drawspiderPoint(ctx, cnt, serie, j, opt); }
